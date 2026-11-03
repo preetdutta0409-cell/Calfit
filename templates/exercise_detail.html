@@ -1,0 +1,75 @@
+{% extends "base.html" %}{% block title %}{{ exercise.name }}{% endblock %}{% block content %}
+<a class="back-link" href="{{ url_for('exercises') }}">← Back to exercise library</a>
+<section class="detail-hero">
+    <div class="detail-photo" data-exercise-image="{{ exercise.image_url }}"><span class="image-label">{{ exercise.level
+            }}</span></div>
+    <div class="detail-intro"><span class="eyebrow">{{ exercise.category }} / EXERCISE GUIDE</span>
+        <h1>{{ exercise.name }}</h1>
+        <p class="muted">A clear guide to technique, training benefits and recovery.</p>
+        <div class="detail-stats">
+            <div><strong>{{ (exercise.duration // 60) }}m{% if exercise.duration % 60 %} {{ exercise.duration % 60 }}s{%
+                    endif %}</strong><small>Estimated session time</small></div>
+            <div><strong>{{ exercise.reps }}</strong><small>Target</small></div>
+            <div><strong>~{{ exercise.calories }}</strong><small>Estimated kcal</small></div>
+        </div>
+        <div class="tag-row"><span>{{ exercise.primary_muscles }}</span>{% if exercise.secondary_muscles %}<span>{{
+                exercise.secondary_muscles }}</span>{% endif %}<span>{{ exercise.equipment }}</span></div>
+    </div>
+</section>
+<section class="detail-grid">
+    <div class="detail-main">
+        <article class="panel detail-section"><span class="eyebrow">01 / TECHNIQUE</span>
+            <h2>How to do it</h2>
+            <p>{{ exercise.instructions or 'Start with a controlled range of motion. Maintain steady breathing and stop
+                if you experience pain.' }}</p>
+            <ol class="steps">
+                <li>Set up in a stable, comfortable starting position.</li>
+                <li>Move slowly and deliberately. Keep your breathing steady.</li>
+                <li>Return to the starting position with control.</li>
+            </ol>
+        </article>
+        <article class="panel detail-section"><span class="eyebrow">02 / DEMONSTRATION</span>
+            <h2>Watch the movement</h2>{% if exercise.video_url %}<div class="exercise-video exercise-video-short"><iframe
+                    src="{{ exercise.video_url }}" title="{{ exercise.name }} exercise demonstration" loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                    
+                </iframe><button class="exercise-video-fullscreen" type="button" aria-label="View video full screen" title="View full screen">⛶</button></div>
+            <p class="tiny muted">Video is embedded from its original YouTube creator. Use the player controls to watch
+                the demonstration.</p>{% else %}<div class="video-panel">
+                <div><strong>No video added yet</strong>
+                    <p>Add a YouTube video or Shorts embed URL when editing this exercise.</p><a
+                        class="button button-lime button-small"
+                        href="https://www.youtube.com/results?search_query={{ exercise.name|urlencode }}+proper+form"
+                        target="_blank" rel="noopener">Find a demonstration ↗</a>
+                </div>
+            </div>{% endif %}
+        </article>
+        <article class="panel detail-section"><span class="eyebrow">03 / BENEFITS</span>
+            <h2>Why it belongs in your routine</h2>
+            <p>{{ exercise.benefits or 'Builds movement confidence and contributes to a balanced bodyweight routine.' }}
+            </p>
+        </article>
+    </div>
+    <aside class="detail-aside">
+        <div class="panel detail-section"><span class="eyebrow">MUSCLE FOCUS</span>
+            <h3>Primary muscles</h3>
+            <p>{{ exercise.primary_muscles }}</p>
+            <h3>Supporting muscles</h3>
+            <p>{{ exercise.secondary_muscles or 'Not specified' }}</p>
+        </div>
+        <div class="panel detail-section"><span class="eyebrow">RECOVERY</span>
+            <h3>Give your body time</h3>
+            <p>{{ exercise.recovery or 'Allow adequate recovery between challenging sessions. Adjust volume to your
+                training level.' }}</p>
+        </div>
+        <div class="panel detail-section"><span class="eyebrow">TRAINING NOTES</span>
+            <h3>Keep it controlled</h3>
+            <p>Prioritize good technique over speed or repetition count. Scale the movement to your current ability.</p>
+        </div>{% if not exercise.is_preset %}<form method="post"
+            action="{{ url_for('delete_exercise', exercise_id=exercise.id) }}"
+            onsubmit="return confirm('Delete this exercise?')"><button class="button button-outline full">Delete my
+                exercise</button></form>{% endif %}
+    </aside>
+</section>
+{% endblock %}

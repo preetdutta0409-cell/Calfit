@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Train on your time{% endblock %}
+{% block content %}
+<section class="hero">
+ <div class="hero-copy"><span class="eyebrow"><i></i> CALISTHENICS, MADE PERSONAL</span><h1>Make every<br><em>minute</em> count.</h1>
+ <p class="hero-lede">A smarter way to build bodyweight circuits. Choose your time, focus on the muscles you want to train, and get a plan that fits.</p>
+ <div class="hero-actions"><a class="button button-lime" href="{{ url_for('register') }}">Build your first circuit <span>↗</span></a><a class="text-link" href="{{ url_for('login') }}">I already have an account</a></div>
+ <div class="hero-proof"><div class="proof-avatars"><b>A</b><b>M</b><b>J</b></div><span>Simple training. Thoughtful progress.</span></div></div>
+ <div class="hero-visual"><div class="hero-photo"></div><div class="photo-tag"><span class="tag-icon">↗</span><div><strong>Built around you</strong><small>Your time. Your training.</small></div></div><div class="hero-stat"><strong>15<span>min</span></strong><small>can be enough to begin</small></div></div>
+</section>
+<section class="landing-strip"><div><strong>01</strong><span>Choose your available time</span></div><div><strong>02</strong><span>Select your muscle focus</span></div><div><strong>03</strong><span>Train with a tailored circuit</span></div></section>
+{% endblock %}

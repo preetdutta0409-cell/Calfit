@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}{{ 'Create account' if mode=='register' else 'Welcome back' }}{% endblock %}
+{% block content %}<section class="auth-layout">
+    <div class="auth-photo">
+        <div class="auth-photo-copy"><span class="eyebrow light">CALFIT / TRAINING, REIMAGINED</span>
+            <h2>Show up for<br>yourself.</h2>
+            <p>Build a routine that works with the time you have.</p>
+        </div>
+    </div>
+    <div class="auth-panel"><span class="eyebrow">YOUR TRAINING SPACE</span>
+        <h1>{{ 'Create your account' if mode=='register' else 'Welcome back' }}</h1>
+        <p class="muted">{{ 'Start building focused workouts in minutes.' if mode=='register' else 'Pick up where your
+            last session left off.' }}</p>
+        <form method="post" class="form-stack">{% if mode=='register' %}<label>Your name<input name="name" required
+                    autocomplete="name" placeholder="Alex Morgan"></label>{% endif %}<label>Email address<input
+                    type="email" name="email" required autocomplete="email"
+                    placeholder="you@example.com"></label><label>Password<input type="password" name="password" required
+                    minlength="8" autocomplete="{{ 'new-password' if mode=='register' else 'current-password' }}"
+                    placeholder="At least 8 characters"></label><button class="button button-lime full" type="submit">{{
+                'Create account' if mode=='register' else 'Log in' }} <span>→</span></button></form>
+        <p class="auth-switch">{{ "Already have an account?" if mode=='register' else "New to CalFit?" }} <a
+                href="{{ url_for('login' if mode=='register' else 'register') }}">{{ 'Log in' if mode=='register' else
+                'Create an account' }}</a></p>
+        <p class="tiny muted">By continuing, you agree to our <a href="{{ url_for('terms') }}">Terms</a> and <a
+                href="{{ url_for('privacy') }}">Privacy Policy</a>.</p>
+    </div>
+</section>{% endblock %}

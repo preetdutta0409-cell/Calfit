@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block title %}Workout in progress{% endblock %}{% block content %}
+<section class="workout-shell">
+    <div class="workout-heading"><span class="eyebrow">YOUR SESSION</span>
+        <h1>Stay with the movement.</h1>
+        <p class="muted">Move at a controlled pace. Pause whenever you need to.</p>
+    </div>
+    <div class="workout-stage">
+        <div class="timer-face"><span id="timer"
+                data-seconds="{{ exercises[0].duration if exercises else 0 }}">00:00</span><small
+                id="timerLabel">EXERCISE TIME</small></div>
+        <div class="workout-current"><span class="eyebrow">UP NEXT IN YOUR CIRCUIT</span>
+            <h2 id="exerciseName">{{ exercises[0].name if exercises else 'No exercises selected' }}</h2>
+            <p id="exerciseReps">{{ exercises[0].reps if exercises else '' }}</p>
+            <div class="timer-controls"><button class="button button-lime" id="timerToggle">Pause</button><button
+                    class="button button-outline" id="timerNext">Next exercise →</button></div>
+        </div>
+    </div>
+    <div class="panel workout-queue">
+        <div class="section-title">
+            <h2>Your circuit</h2><span>{{ exercises|length }} movements</span>
+        </div>{% for e in exercises %}<div class="queue-row" data-name="{{ e.name }}" data-reps="{{ e.reps }}"
+            data-duration="{{ e.duration }}" data-calories="{{ e.calories }}"><span class="queue-number">{{
+                '%02d'|format(loop.index) }}</span><strong>{{ e.name }}</strong><span>{{ (e.duration // 60) }}m {{
+                e.duration % 60 }}s</span><b class="exercise-kcal">~{{ e.calories }} kcal</b></div>{% endfor %}
+    </div>
+    <form method="post" action="{{ url_for('log_workout') }}" id="finishForm">{% for e in exercises %}<input
+            type="hidden" name="names" value="{{ e.name }}"><input type="hidden" name="durations"
+            value="{{ e.duration }}"><input type="hidden" name="calories" value="{{ e.calories }}">{% endfor %}<button
+            class="button button-lime full">Finish & save session</button></form>
+</section>
+{% endblock %}{% block scripts %}
+<script src="{{ url_for('static', filename='js/timer.js') }}"></script>{% endblock %}

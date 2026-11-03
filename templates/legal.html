@@ -1,0 +1,35 @@
+{% extends "base.html" %}{% block title %}{{ page|title }}{% endblock %}{% block content %}<section class="legal-page">
+    <span class="eyebrow">CALFIT / INFORMATION</span>
+    <h1>{{ page|title }}</h1>{% if page=='privacy' %}<p class="muted">Last updated: 30 October 2026</p>
+    <h2>Information we store</h2>
+    <p>CalFit stores account details (name and email), a securely hashed password, exercises you add, and workout
+        entries you choose to save. The starter application uses a local SQLite database.</p>
+    <h2>How information is used</h2>
+    <p>Information is used to provide sign-in, manage your exercise library, generate circuits and display your workout
+        history. This starter build does not connect to wearable devices or sell personal information.</p>
+    <h2>Security and retention</h2>
+    <p>Passwords are stored as hashes. For a public deployment, configure a strong secret key, HTTPS, backups, access
+        controls and a documented data-retention process. You should add account deletion and export workflows before
+        collecting real user data.</p>
+    <h2>Contact</h2>
+    <p>Preet Dutta - 25293916072<br>Priyanshu - 2593916078<br>Vansh - 25293916116<br>This is our project for ADA SEMESTER 2. Contact us through the FOT office
+    </p>{% elif page=='license'
+    %}<h2>MIT License</h2>
+    <p>Copyright (c) 2026 CalFit contributors.</p>
+    <p>Permission is granted, free of charge, to any person obtaining a copy of this software and associated
+        documentation files, to deal in the Software without restriction, including the rights to use, copy, modify,
+        merge, publish, distribute, sublicense, and/or sell copies, subject to inclusion of this copyright notice and
+        permission notice.</p>
+    <p>The software is provided “as is”, without warranty of any kind, express or implied.</p>
+    <p>See the LICENSE file in the project root for the complete license text.</p>{% else %}<h2>Using CalFit</h2>
+    <p>CalFit is an educational fitness-planning application. You are responsible for choosing movements appropriate to
+        your abilities and environment.</p>
+    <h2>Exercise information</h2>
+    <p>Exercise durations, repetition targets and calorie figures are estimates for planning and demonstration. They are
+        not individualized medical advice or guaranteed outcomes.</p>
+    <h2>Safe use</h2>
+    <p>Use controlled technique, warm up appropriately and stop if you experience pain, dizziness or unusual symptoms.
+        Seek qualified professional advice when needed.</p>
+    <h2>Availability</h2>
+    <p>This starter project is provided as-is and may change as it is developed.</p>{% endif %}
+</section>{% endblock %}
