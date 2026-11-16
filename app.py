@@ -238,13 +238,38 @@ def generator():
         result = {"items": chosen, "minutes": total_minutes, "used": sum(e.duration+15 for e in chosen), "calories": sum(e.calories for e in chosen)}
     return render_template("generator.html", result=result)
 
+
 @app.route("/start-workout", methods=["POST"])
 @login_required
 def start_workout():
-    ids = request.form.getlist("exercise_ids")
-    found = {e.id: e for e in Exercise.query.filter(Exercise.id.in_(ids)).all()}
-    ordered_exercises = [found[int(exercise_id)] for exercise_id in ids if int(exercise_id) in found]
-    return render_template("workout.html", exercises=ordered_exercises)
+    # Convert submitted IDs from strings to integers
+    raw_ids = request.form.getlist("exercise_ids")
+
+    ids = []
+    for value in raw_ids:
+        try:
+            ids.append(int(value))
+        except (ValueError, TypeError):
+            continue
+
+    # Fetch exercises using integer IDs
+    found = {
+        e.id: e
+        for e in Exercise.query.filter(Exercise.id.in_(ids)).all()
+    }
+
+    # Preserve the selected exercise order
+    ordered_exercises = [
+        found[exercise_id]
+        for exercise_id in ids
+        if exercise_id in found
+    ]
+
+    return render_template(
+        "workout.html",
+        exercises=ordered_exercises
+    )
+
 
 @app.route("/log-workout", methods=["POST"])
 @login_required
