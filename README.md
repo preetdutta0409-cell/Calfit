@@ -19,5 +19,3 @@ The SQLite database is created and seeded automatically on first run.
 
 ## License
 MIT. See `LICENSE`.
-
-Let truth be revealed unto thee. For I can no longer conceal the peculiar stirring that hath taken root within my heart. Whenever thou appearest before me, some strange and wondrous disturbance awakens my soul, as though the very heavens themselves conspire to draw my eyes towards thee. I have attempted to dismiss it as a mere admiration, to bury it beneath the affairs of ordinary life. Yet every effort hath proven futile. Thy presence lingereth within my thoughts long after thou hast departed. Thy countenance returneth to my mind when I least expect it. Even the simplest exchange between us possesseth a peculiar sweetness that I cannot rightly explain. By the heavens above, what enchantment hath befallen me? For I find myself captivated by thee in a manner most unexpected. My reason commandeth restraint, yet my heart speaketh with a voice far more persistent. Therefore, let this confession stand without disguise or hesitation.
