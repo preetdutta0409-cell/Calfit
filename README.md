@@ -16,6 +16,7 @@ The SQLite database is created and seeded automatically on first run.
 - Exercise demonstration links open YouTube search results for the named movement. Replace them with reviewed video URLs before production.
 - This is an educational MVP, not medical advice or a substitute for individualized coaching.
 - Set `debug=False` and use a production WSGI server (such as Gunicorn) for deployment.
+- login - Create account using valid email id and use it to login
 
 ## License
 MIT. See `LICENSE`.
